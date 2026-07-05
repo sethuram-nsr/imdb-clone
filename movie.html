@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Movies Data- Details</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d5635d350d.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="singleMovie()">
+    <div class="header">
+        <div class="header-container">
+            <div>
+                <h1>Movie Details</h1>
+            </div>
+            <div class="header-link">
+                <span><a href="index.html">Back to Home</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="movie-container">
+            <!-- Movie details will be loaded here dynamically -->
+        </div>
+        <video class="video-middle" autoplay loop muted>
+            <source src="./assets/moviedata.mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</body>
+
+</html>

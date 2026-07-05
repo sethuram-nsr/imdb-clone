@@ -6,7 +6,9 @@ fetch('http://www.omdbapi.com/?i=tt3896198&apikey=48aa722f')
     .then(res => res.json())
     .then(data => console.log(data));
 
-searchInput.addEventListener('input', findMovies);
+if (searchInput) {
+    searchInput.addEventListener('input', findMovies);
+}
 
 
 async function singleMovie() {
@@ -19,8 +21,8 @@ async function singleMovie() {
     const data = await res.json();
     console.log(data);
 
-    // // Fetch YouTube trailer
-    // const trailerUrl = await getTrailerUrl(data.Title);
+    // Fetch YouTube trailer
+    const trailerUrl = "";
     var output = `
     <div class="movie-poster">
         <img src=${data.Poster} alt="Movie Poster">
@@ -128,12 +130,31 @@ async function displayMovieList(movies) {
     console.log("Here is movie list..", movies);
 }
 async function findMovies() {
-    const url = `https://www.omdbapi.com/?s=${(searchInput.value).trim()}&page=1&apikey=${key}`;
+    const query = (searchInput.value).trim();
+    const startExploring = document.querySelector('.start-exploring');
+
+    if (query === "") {
+        document.querySelector('.fav-container').innerHTML = "";
+        if (startExploring) {
+            startExploring.style.display = "block";
+        }
+        return;
+    }
+
+    const url = `https://www.omdbapi.com/?s=${query}&page=1&apikey=${key}`;
     const res = await fetch(url);
     const data = await res.json();
 
     if (data.Search) {
+        if (startExploring) {
+            startExploring.style.display = "none";
+        }
         displayMovieList(data.Search);
+    } else {
+        if (startExploring) {
+            startExploring.style.display = "none";
+        }
+        document.querySelector('.fav-container').innerHTML = `<div style="width: 100%; text-align: center; color: #888; margin-top: 20px;">No movies found for "${query}"</div>`;
     }
 }
 async function favoritesMovieLoader() {
